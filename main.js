@@ -73,22 +73,25 @@ function createList(){
         el.appendChild(el_img);
         preview.appendChild(el);
     })
+    fullview.setAttribute('src', galleryItems[0].fullview);
+fullview.setAttribute('alt', galleryItems[0].alt);
 }
 
-fullview.setAttribute('src', galleryItems[0].fullview);
-fullview.setAttribute('alt', galleryItems[0].alt);
+
 
 function changeFullView(e){
+  // исправление бага в большой картинке спомощью условия!!!
+if (!e.target.getAttribute('data-fullview')) return;
 fullview.setAttribute('src', e.target.dataset.fullview);
 fullview.setAttribute('alt', e.target.getAttribute('alt'));
 listLi.forEach(img=>img.style.outline='');
 // listLi.forEach(img=>console.log(img));
 e.target.style.outline = '10px solid green';
 }
-
 createList();
 let listLi = document.querySelectorAll('li>img');
 gallery.addEventListener('click', changeFullView);
+
   /*
     ⚠️ ЗАДАНИЕ ПОВЫШЕННОЙ СЛОЖНОСТИ - ВЫПОЛНЯТЬ ПО ЖЕЛАНИЮ
     
